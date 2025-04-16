@@ -82,8 +82,52 @@ class Vuelo {
     public function getObjPersona () { return $this ->objPersona;}
 
     //setters
-    
+    public function setNumero($numero){ $this->numero = $numero; }
+    public function setFecha($fecha){ $this->fecha = $fecha; }
+    public function setDestino($destino){ $this->destino = $destino; }
+    public function setHrArribo($hrArribo){ $this->hrArribo = $hrArribo; }
+    public function setHrPartida($hrPartida){ $this->hrPartida = $hrPartida; }
+    public function setCantAsientosTotales($cantAsientosTotales){ $this->cantAsientosTotales = $cantAsientosTotales; }
+    public function setCantAsientosDisp($cantAsientosDisp){ $this->cantAsientosDisp = $cantAsientosDisp; }
+    public function setObjPersona($objPersona){ $this->objPersona = $objPersona; }
 
+    //metodo asignar asientos disponibles
+    public function asignarAsientosDisponibles($cant_asientos) {
+        // verifica si hay suficientes asientos disponibles
+        if ($cant_asientos <= $this->cantAsientosDisp) {
+            // resta los asientos asignados de los disponibles
+            $this->cantAsientosDisp -= $cant_asientos;
+            // devuelve true porque se pudo hacer la asignacion
+            return true;
+        }
+        // devuelve false si no hay suficientes asientos
+        return false;
+    }
 }
+//creo la clase aerolinea
+class Aerolinea {
+    // atributos
+    private $identificacion;
+    private $nombre;
+    private $coleccionVuelos;
+
+    // método constructor
+    public function __construct($identificacion, $nombre){
+        $this->identificacion = $identificacion;
+        $this->nombre = $nombre;
+        $this->coleccionVuelos = []; // inicializa sin vuelos
+    }
+
+    // métodos de acceso (getters)
+    public function getIdentificacion(){ return $this->identificacion; }
+    public function getNombre(){ return $this->nombre; }
+    public function getColeccionVuelos(){ return $this->coleccionVuelos; }
+
+    // métodos de acceso (setters)
+    public function setIdentificacion($identificacion){ $this->identificacion = $identificacion; }
+    public function setNombre($nombre){ $this->nombre = $nombre; }
+    public function setColeccionVuelos($vuelos){ $this->coleccionVuelos = $vuelos; }
+}
+
 
 ?>
